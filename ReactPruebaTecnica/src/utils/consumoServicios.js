@@ -86,3 +86,32 @@ export async function buscarCiudades(idDepartamento) {
     return datos
     
 }
+
+export async function registrarClientesMarca(datosFormulario) {
+    let url="http://localhost:8443/marca/introducir"
+
+    let peticion ={
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:datosFormulario
+    }
+
+    let respuesta = await fetch(url,peticion)
+    return await respuesta.text()
+}
+
+export async function buscarMarcasPorCliente(clienteId) {
+    let url= `http://localhost:8443/marcaPorCliente/${clienteId}`
+
+    let respuesta = await fetch(url,{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    let datos = await respuesta.json()
+    return datos
+    
+}

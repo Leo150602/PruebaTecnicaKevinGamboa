@@ -1,10 +1,9 @@
-import { buscarClientes, registrarCliente } from "./consumoServicios";
-import { useListaMarcas } from "../moleculas/Marcas";
+import { buscarClientes, registrarCliente, registrarClientesMarca } from "./consumoServicios";
 import { useState, useEffect} from "react";
 import { ExpresionesRegulares } from "./ExpresionesRegulares";
 
 
-export function ValidarFormulario({escojido, envioErrores}){
+export function ValidarFormulario({escojidos, envioErrores}){
 
     const [validado, setValidado] = useState([])
 
@@ -21,6 +20,7 @@ export function ValidarFormulario({escojido, envioErrores}){
         setValidado((prevValidado) => prevValidado.filter((elemento) => elemento !== nombre));
     };
     
+    
 
     const validar= async()=>{
         const entradas = document.getElementsByClassName("entrada")
@@ -28,7 +28,6 @@ export function ValidarFormulario({escojido, envioErrores}){
     
         const datos = await buscarClientes()
         let copia = []
-        datos.forEach(dato=>console.log(dato));
         copia = [...datos]
         
 
@@ -64,12 +63,20 @@ export function ValidarFormulario({escojido, envioErrores}){
         }); 
     }
 
-    useEffect(() => {
+    const sacarIdCliente=async()=>{
 
-        console.log(validado);
+        const datos = await buscarClientes()
+        let copia = []
+        copia = datos.map(cliente => cliente.idCliente);
+        let ultimoId = Math.max(...copia);
+        return ultimoId
+
+    }
+
+    useEffect(() => {
         
         envioErrores(validado)
-        if(validado.length==0 && escojido!=0){
+        if(validado.length==0 && escojidos.length !=0){
 
             const entradas = document.getElementsByClassName("entrada")
 
@@ -83,22 +90,40 @@ export function ValidarFormulario({escojido, envioErrores}){
                 
             });
 
-            console.log(datosCliente);
+            
             
             let datosListos = JSON.stringify(datosCliente)
 
-            registrarCliente(datosListos).then(function (respuesta){
+            registrarCliente(datosListos).then( async function (respuesta){
                 
+                sacarIdCliente().then(id=>{
+                    console.log(escojidos);
+                    
+                    escojidos.forEach(marca=>{
+
+                        let datosClienteMarca = {
+                            clienteId:parseFloat(id),
+                            marcaId:parseFloat(marca)
+                        }
+                        let datosListosCM = JSON.stringify(datosClienteMarca)
+                        registrarClientesMarca(datosListosCM).then()
+                    })
+                    
+
+                })
+
+                Swal.fire({
+                    title: "el cliente se agrego correctamente",
+                    icon: "success",
+                    draggable: true
+                })
+
             })
 
-            Swal.fire({
-                title: "Drag me!",
-                icon: "success",
-                draggable: true
-            })
-
-        }}
-        ,[validado])
+            
+        }   
+    }
+    ,[validado])
 
     return(
         <button onClick={validar} type="button">Enviar</button>

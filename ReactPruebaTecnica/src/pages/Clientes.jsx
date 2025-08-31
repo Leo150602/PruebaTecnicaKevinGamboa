@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Encabezado } from "../moleculas/PartesTabla"
+import { CuerpoTabla, Encabezado } from "../moleculas/PartesTabla"
 
 export function Clientes(){
     return(
@@ -10,7 +10,8 @@ export function Clientes(){
             <div className="contenido">
                 <table>
                     <Encabezado/>
-                    
+                    <CuerpoTabla/>
+
                 </table>
             </div>
             

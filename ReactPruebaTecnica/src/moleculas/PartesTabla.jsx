@@ -1,4 +1,6 @@
-import { Th } from "../atomos/ElementosTabla";
+import { Th , Td, TdMarcas} from "../atomos/ElementosTabla";
+import { buscarClientes } from "../utils/consumoServicios";
+import { useState, useEffect } from "react";
 
 export function Encabezado(){
 
@@ -7,6 +9,7 @@ export function Encabezado(){
         <thead>
             <tr>
 
+                <Th atributo="MARCAS" />
                 <Th atributo="ID" />
                 <Th atributo="NOMBRES" />
                 <Th atributo="APELLIDOS" />
@@ -17,6 +20,7 @@ export function Encabezado(){
                 <Th atributo="DEPARTAMENTO" />
                 <Th atributo="CIUDAD" />
                 <Th atributo="DIRECCION" />
+                
 
             </tr>
         </thead>
@@ -26,17 +30,36 @@ export function Encabezado(){
 
 }
 
-export function cuerpoTabla(){
+export function CuerpoTabla() {
+    const [clientes, setClientes] = useState([]);
 
-    return(
+    useEffect(() => {
+        const fetchClientes = async () => {
+            const lista = await buscarClientes();
+            setClientes(lista);
+        };
+        fetchClientes();
+    }, []);
 
+    return (
         <tbody>
 
             
-
+            {clientes.sort((a, b) => a.idCliente - b.idCliente).map(cliente => (
+                <tr key={cliente.idCliente}>
+                    <TdMarcas idCliente={cliente.idCliente}/>
+                    <Td valor={cliente.idCliente} />
+                    <Td valor={cliente.nombresCliente} />
+                    <Td valor={cliente.apellidosCliente} />
+                    <Td valor={cliente.tipoIdentificacion} />
+                    <Td valor={cliente.numeroIdentificacion} />
+                    <Td valor={cliente.fechaNacimiento} />
+                    <Td valor={cliente.pais} />
+                    <Td valor={cliente.departamento} />
+                    <Td valor={cliente.ciudad} />
+                    <Td valor={cliente.direccion} />
+                </tr>
+            ))}
         </tbody>
-
-    )
-
+    );
 }
-

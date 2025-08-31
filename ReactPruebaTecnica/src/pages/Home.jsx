@@ -14,7 +14,7 @@ import { useState } from "react";
 
 export function Home(){
 
-    const {escojido, agregarLista } = useListaMarcas()
+    const {escojidos, agregarListaMarcas } = useListaMarcas()
     const [idPais, setIdPais] = useState("");
     const [idDepartamento, setIdDepartamento] = useState("");
     const [error, seterror] = useState([]);
@@ -30,16 +30,16 @@ export function Home(){
             <h2>¿en cuales empresas te gustaria registrarte?</h2>
             <div className="empresas">
 
-                <Marcas imagen={americanino} nombre="Americanino" marca="1" escojido={escojido} agregarLista={agregarLista} />
-                <Marcas imagen={americanEagle} nombre="American Eagle" marca="2" escojido={escojido} agregarLista={agregarLista} />
-                <Marcas imagen={chevignon} nombre="Chevignon" marca="3" escojido={escojido} agregarLista={agregarLista} />
-                <Marcas imagen={esprit} nombre="Esprit" marca="4" escojido={escojido} agregarLista={agregarLista} />
-                <Marcas imagen={nafNaf} nombre="Naf Naf" marca="5" escojido={escojido} agregarLista={agregarLista} />
-                <Marcas imagen={rifle} nombre="Rifle" marca="6" escojido={escojido} agregarLista={agregarLista} />
+                <Marcas imagen={americanino} nombre="Americanino" marca="1" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
+                <Marcas imagen={americanEagle} nombre="American Eagle" marca="2" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
+                <Marcas imagen={chevignon} nombre="Chevignon" marca="3" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
+                <Marcas imagen={esprit} nombre="Esprit" marca="4" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
+                <Marcas imagen={nafNaf} nombre="Naf Naf" marca="5" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
+                <Marcas imagen={rifle} nombre="Rifle" marca="6" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 
 
             </div>
-            <div className="formularioDiv" style={{ display: escojido.length === 0 ? "none" : "block" }}>
+            <div className="formularioDiv" style={{ display: escojidos.length === 0 ? "none" : "block" }}>
                 <h1>Datos De Inscripcion</h1>
                 <form >
                         
@@ -56,7 +56,7 @@ export function Home(){
                         <ParametroSelectCiudades nombreTitulo="Ciudad" nombre="ciudad" idDepartamento={idDepartamento} mensajeError="seleccione una ciudad" error={error} />
                         
                     </div>
-                    <ValidarFormulario escojido={escojido} envioErrores={(errores=>seterror(errores))}/>
+                    <ValidarFormulario escojidos={escojidos} envioErrores={(errores=>seterror(errores))}/>
                 </form>
             </div>
             

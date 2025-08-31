@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import { buscarMarcasPorCliente } from "../utils/consumoServicios"
+import { useEffect, useState } from "react";
+
 
 export function Th({atributo}){
 
@@ -11,11 +14,11 @@ export function Th({atributo}){
 }
 const EstiloTh = styled.th`
     
-    min-width: 80px;
+    
     border: solid black 2px;
     padding: 10px;
     margin: 0;
-    width: 90px;
+    min-width: 100px;
     background-color: rgb(223, 215, 215);
 `
 
@@ -24,17 +27,56 @@ export function Td({valor}){
     return(
 
         <EstiloTd>
-            <td>{valor}</td>
+            {valor}
         </EstiloTd>
 
     )
 
 }
-const EstiloTd = styled.th`
+const EstiloTd = styled.td`
     
     border: solid black 2px;
     padding: 10px;
     margin: 0;
-    width: 90px;
+    width: auto;
     background-color: rgb(204, 221, 236);
+`
+
+export function TdMarcas({idCliente}){
+
+    const [listaMarcas, setListaMarcas] = useState([]);
+
+    useEffect(() => {
+        const obtenerMarcas = async () => {
+      
+            const marcas = await buscarMarcasPorCliente(idCliente);
+            setListaMarcas(marcas)
+      
+        };
+
+      obtenerMarcas();
+  
+    }, [idCliente])
+
+    return(
+
+        <EstiloMarca>
+            <ul>
+            {listaMarcas.map((marca, index) => (
+                <li key={index}>{marca.marca}</li>
+            ))}
+            </ul>
+        </EstiloMarca>
+
+    )
+
+}
+const EstiloMarca = styled.td`
+    
+    border: solid black 2px;
+    padding: 10px;
+    margin: 0;
+    min-width: 200px;
+    background-color: rgb(33, 83, 124);
+    color: white;
 `

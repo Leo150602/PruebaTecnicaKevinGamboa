@@ -3,30 +3,30 @@ import { ImgMarca, NombreMarca } from "../atomos/Marca";
 import { useState } from "react";
 
 export function useListaMarcas() {
-    const [escojido, setEscojido] = useState([]);
+    const [escojidos, setEscojido] = useState([]);
 
-    let agregarLista=(valor)=>{
+    let agregarListaMarcas=(valor)=>{
 
-        if(escojido.includes(valor)){
+        if(escojidos.includes(valor)){
             
-            setEscojido(escojido.filter(elemento=>elemento != valor))
+            setEscojido(escojidos.filter(elemento=>elemento != valor))
             
         }else{
             
-            setEscojido([...escojido,valor])
+            setEscojido([...escojidos,valor])
             
         }
 
     }
   
-    return { escojido,  agregarLista };
+    return { escojidos,  agregarListaMarcas };
 }
 
 export function Marcas(props){
 
     return(
 
-        <MarcasDiv onClick={()=>props.agregarLista(props.marca)} $escojido={props.escojido.includes(props.marca)}>
+        <MarcasDiv onClick={()=>props.agregarListaMarcas(props.marca)} $escojidos={props.escojidos.includes(props.marca)}>
 
             <ImgMarca imagen={props.imagen} />
             <NombreMarca nombre={props.nombre} />
@@ -45,10 +45,10 @@ const MarcasDiv = styled.div`
     }
 
     label{
-        color: ${(props) => (props.$escojido?"green":"black")};
+        color: ${(props) => (props.$escojidos?"green":"black")};
     }
     div{
-        border: solid ${(props) => (props.$escojido?"green":"black")} ${(props) => (props.$escojido?"3px":"2px")};
+        border: solid ${(props) => (props.$escojidos?"green":"black")} ${(props) => (props.$escojidos?"3px":"2px")};
     }
     
     display: flex;
