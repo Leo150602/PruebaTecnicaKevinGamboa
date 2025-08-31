@@ -10,15 +10,15 @@ import java.util.List;
 @Repository
 public interface UbicacionRepositorio extends JpaRepository<Pais, Integer> {
 
-    @Query(value = "CALL mostrarPaises()", nativeQuery = true)
+    @Query(value = "CALL mostrar_paises()", nativeQuery = true)
     List<PaisesModelo> mostrarPaises();
 
-    @Query(value = "CALL mostrarDepartamentos(:paisId)", nativeQuery = true)
-    List<DepartamentosModelo> mostrarDepartamentos(@Param("paisId") Integer paisId);
+    @Query(value = "CALL mostrar_departamentos(:pais_id)", nativeQuery = true)
+    List<DepartamentosModelo> mostrarDepartamentos(@Param("pais_id") Integer paisId);
 
-    @Query(value = "CALL mostrarCiudades(:departamentoId)", nativeQuery = true)
-    List<CiudadesModelo> mostrarCiudades(@Param("departamentoId") Integer departamentoId);
+    @Query(value = "CALL mostrar_ciudades(:departamento_id)", nativeQuery = true)
+    List<CiudadesModelo> mostrarCiudades(@Param("departamento_id") Integer departamentoId);
 
-    @Query(value = "CALL mostrarTipoIdentificacion(:tipoId)", nativeQuery = true)
-    List<TipoIdentificacionModelo> mostrarTipoIdentificacion(@Param("tipoId") Integer tipoId);
+    @Query(value = "CALL mostrar_tipo_identificacion()", nativeQuery = true)
+    List<TipoIdentificacionModelo> mostrarTipoIdentificacion();
 }

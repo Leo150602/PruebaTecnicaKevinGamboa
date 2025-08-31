@@ -1,11 +1,21 @@
 import './App.css'
+import { MyRoutes } from './organismos/Rutas'
+import { Sidebar } from './organismos/Sidebar'
 
 function App() {
 
   return (
-    <>
-      <label htmlFor="">hola mundo</label>
-    </>
+    <div className='app'>
+      
+      <Sidebar>
+
+      </Sidebar>
+
+      <MyRoutes>
+
+      </MyRoutes>
+
+    </div>
   )
 }
 

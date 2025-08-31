@@ -16,7 +16,7 @@ public class EliminarMarcaPorClienteModelo {
         return clienteId;
     }
 
-    public void setClienteId(Integer clienteId) {
+    public void getClienteId(Integer clienteId) {
         this.clienteId = clienteId;
     }
 

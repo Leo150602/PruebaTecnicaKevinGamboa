@@ -3,13 +3,11 @@ package com.example.BackPruebaTecnica.controladores;
 import com.example.BackPruebaTecnica.modelos.EliminarMarcaPorClienteModelo;
 import com.example.BackPruebaTecnica.servicios.EliminarMarcaPorClienteServicio;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/eliminarMarca")
+@RequestMapping("/marcaPorCliente")
+@CrossOrigin(origins = "*")
 public class EliminarMarcaPorClienteControlador {
 
     private final EliminarMarcaPorClienteServicio eliminarMarcaPorClienteServicio;
@@ -19,11 +17,10 @@ public class EliminarMarcaPorClienteControlador {
 
     }
 
-    @DeleteMapping("/{clienteId}/{marcaId}")
-    public ResponseEntity<String> eliminarMarcaPorCliente(@RequestBody EliminarMarcaPorClienteModelo request){
+    @DeleteMapping("/eliminar/{clienteId}/{marcaId}")
+    public ResponseEntity<String> eliminarMarcaPorCliente(@PathVariable Integer clienteId, @PathVariable Integer marcaId){
         eliminarMarcaPorClienteServicio.eliminarMarcaPorCliente(
-                request.getClienteId(),
-                request.getMarcaId()
+                clienteId,marcaId
         );
         return ResponseEntity.ok("Cliente eliminado correctamente");
     }

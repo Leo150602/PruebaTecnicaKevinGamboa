@@ -3,13 +3,11 @@ package com.example.BackPruebaTecnica.controladores;
 import com.example.BackPruebaTecnica.modelos.ActualizarClienteModelo;
 import com.example.BackPruebaTecnica.servicios.ActualizarClienteServicio;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/actualizarCliente")
+@RequestMapping("/cliente")
+@CrossOrigin(origins = "*")
 public class ActualizarClienteControlador {
 
     private final ActualizarClienteServicio actualizarClienteServicio;
@@ -18,7 +16,7 @@ public class ActualizarClienteControlador {
         this.actualizarClienteServicio = actualizarClienteServicio;
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public ResponseEntity<String> actualizarCliente(@RequestBody ActualizarClienteModelo request) {
         actualizarClienteServicio.actualizarCliente(
                 request.getEntradaIdCliente(),

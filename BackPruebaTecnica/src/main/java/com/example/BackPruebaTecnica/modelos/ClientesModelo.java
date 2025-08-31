@@ -12,7 +12,7 @@ public class ClientesModelo {
     @GeneratedValue()
     private Integer idCliente;
     private String nombresCliente;
-    private  String apellidosCliente;
+    private String apellidosCliente;
     private String tipoIdentificacion;
     private Integer numeroIdentificacion;
     private Date fechaNacimiento;

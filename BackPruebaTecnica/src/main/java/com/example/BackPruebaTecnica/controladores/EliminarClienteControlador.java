@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/eliminarCliente")
+@CrossOrigin(origins = "*")
 public class EliminarClienteControlador {
 
     private final EliminarClienteServicio eliminarClienteServicio;
@@ -15,8 +16,8 @@ public class EliminarClienteControlador {
     }
 
     @DeleteMapping("/{clienteId}")
-    public ResponseEntity<String> eliminarCliente(@PathVariable Integer request){
-        eliminarClienteServicio.eliminarCliente(request);
+    public ResponseEntity<String> eliminarCliente(@PathVariable Integer clienteId){
+        eliminarClienteServicio.eliminarCliente(clienteId);
         return ResponseEntity.ok("Cliente eliminado correctamente");
     }
 }

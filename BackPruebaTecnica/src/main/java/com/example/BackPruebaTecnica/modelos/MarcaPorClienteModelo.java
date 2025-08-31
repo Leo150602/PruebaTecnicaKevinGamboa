@@ -3,12 +3,12 @@ package com.example.BackPruebaTecnica.modelos;
 public class MarcaPorClienteModelo {
 
     private Integer idMarca;
-    private Integer marca;
+    private String marca;
 
     public MarcaPorClienteModelo() {
     }
 
-    public MarcaPorClienteModelo(Integer idMarca, Integer marca) {
+    public MarcaPorClienteModelo(Integer idMarca, String marca) {
         this.idMarca = idMarca;
         this.marca = marca;
     }
@@ -21,11 +21,11 @@ public class MarcaPorClienteModelo {
         this.idMarca = idMarca;
     }
 
-    public Integer getMarca() {
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(Integer marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 }

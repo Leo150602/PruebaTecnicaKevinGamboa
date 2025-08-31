@@ -15,7 +15,7 @@ public class MostrarTipoIdentificacionServicio {
         this.mostrarTipoIdentificacionRepositorio = mostrarTipoIdentificacionRepositorio;
     }
 
-    public List<TipoIdentificacionModelo> mostrarTipoIdentificaion(Integer tipoId){
-        return mostrarTipoIdentificacionRepositorio.mostrarTipoIdentificacion(tipoId);
+    public List<TipoIdentificacionModelo> mostrarTipoIdentificaion(){
+        return mostrarTipoIdentificacionRepositorio.mostrarTipoIdentificacion();
     }
 }

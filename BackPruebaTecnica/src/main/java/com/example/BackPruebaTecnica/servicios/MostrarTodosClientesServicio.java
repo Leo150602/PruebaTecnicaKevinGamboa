@@ -1,5 +1,6 @@
 package com.example.BackPruebaTecnica.servicios;
 
+import com.example.BackPruebaTecnica.modelos.Cliente;
 import com.example.BackPruebaTecnica.modelos.ClientesModelo;
 import com.example.BackPruebaTecnica.repositorios.ClienteRepositorio;
 import org.springframework.stereotype.Service;

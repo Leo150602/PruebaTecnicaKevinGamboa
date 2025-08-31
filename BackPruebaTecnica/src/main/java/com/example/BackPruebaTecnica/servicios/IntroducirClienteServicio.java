@@ -1,14 +1,17 @@
 package com.example.BackPruebaTecnica.servicios;
 
 import com.example.BackPruebaTecnica.repositorios.ClienteRepositorio;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.sql.Date;
 
 @Service
 public class IntroducirClienteServicio {
 
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private final ClienteRepositorio clienteRepositorio;
 
@@ -18,15 +21,15 @@ public class IntroducirClienteServicio {
 
     @Transactional
     public void introducirCliente(
-            int entradaTipoIdentificacion,
-            int entradaNumeroIdentificacion,
+            Integer entradaTipoIdentificacion,
+            Long entradaNumeroIdentificacion,
             String entradaNombresCliente,
             String entradaApellidosCliente,
             Date entradaFechaNacimiento,
             String entradaDireccion,
-            int entradaPais,
-            int entradaDepartamento,
-            int entradaCiudad
+            Integer entradaPais,
+            Integer entradaDepartamento,
+            Integer entradaCiudad
     ) {
         clienteRepositorio.introducirCliente(
                 entradaTipoIdentificacion,
@@ -39,6 +42,7 @@ public class IntroducirClienteServicio {
                 entradaDepartamento,
                 entradaCiudad
         );
+        entityManager.clear();
     }
 }
 

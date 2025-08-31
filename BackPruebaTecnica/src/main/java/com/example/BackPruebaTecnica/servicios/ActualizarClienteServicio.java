@@ -1,6 +1,8 @@
 package com.example.BackPruebaTecnica.servicios;
 
 import com.example.BackPruebaTecnica.repositorios.ClienteRepositorio;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import java.sql.Date;
 
 @Service
 public class ActualizarClienteServicio {
+
 
     private final ClienteRepositorio actualizarClienteRepositorio;
 
@@ -17,16 +20,16 @@ public class ActualizarClienteServicio {
 
     @Transactional
     public void actualizarCliente(
-            int entradaIdCliente,
-            int entradaTipoIdentificacion,
-            int entradaNumeroIdentificacion,
+            Integer entradaIdCliente,
+            Integer entradaTipoIdentificacion,
+            Integer entradaNumeroIdentificacion,
             String entradaNombresCliente,
             String entradaApellidosCliente,
             Date entradaFechaNacimiento,
             String entradaDireccion,
-            int entradaPais,
-            int entradaDepartamento,
-            int entradaCiudad
+            Integer entradaPais,
+            Integer entradaDepartamento,
+            Integer entradaCiudad
     ) {
         actualizarClienteRepositorio.actualizarCliente(
                 entradaIdCliente,
@@ -40,6 +43,7 @@ public class ActualizarClienteServicio {
                 entradaDepartamento,
                 entradaCiudad
         );
+
     }
 }
 

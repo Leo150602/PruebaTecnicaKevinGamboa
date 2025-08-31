@@ -1,15 +1,13 @@
 package com.example.BackPruebaTecnica.controladores;
 
-import com.example.BackPruebaTecnica.modelos.IntroducirClienteModelo;
+import com.example.BackPruebaTecnica.modelos.ClienteDto;
 import com.example.BackPruebaTecnica.servicios.IntroducirClienteServicio;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
+@CrossOrigin(origins = "*")
 public class IntroducirClienteControlador {
 
     private final IntroducirClienteServicio clienteServicio;
@@ -19,17 +17,17 @@ public class IntroducirClienteControlador {
     }
 
     @PostMapping("/introducir")
-    public ResponseEntity<String> introducirCliente(@RequestBody IntroducirClienteModelo request) {
+    public ResponseEntity<String> introducirCliente(@RequestBody ClienteDto request) {
         clienteServicio.introducirCliente(
-                request.getEntradaTipoIdentificacion(),
-                request.getEntradaNumeroIdentificacion(),
-                request.getEntradaNombresCliente(),
-                request.getEntradaApellidosCliente(),
-                request.getEntradaFechaNacimiento(),
-                request.getEntradaDireccion(),
-                request.getEntradaPais(),
-                request.getEntradaDepartamento(),
-                request.getEntradaCiudad()
+                request.getTipoIdentificacion(),
+                request.getNumeroIdentificacion(),
+                request.getNombresCliente(),
+                request.getApellidosCliente(),
+                request.getFechaNacimiento(),
+                request.getDireccion(),
+                request.getPais(),
+                request.getDepartamento(),
+                request.getCiudad()
         );
         return ResponseEntity.ok("Cliente insertado correctamente");
     }

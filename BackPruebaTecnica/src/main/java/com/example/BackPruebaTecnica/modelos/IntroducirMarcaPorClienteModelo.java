@@ -1,23 +1,23 @@
 package com.example.BackPruebaTecnica.modelos;
 
 public class IntroducirMarcaPorClienteModelo {
-    private Integer clienteID;
+    private Integer clienteId;
     private Integer marcaId;
 
     public IntroducirMarcaPorClienteModelo() {
     }
 
-    public IntroducirMarcaPorClienteModelo(Integer clienteID, Integer marcaId) {
-        this.clienteID = clienteID;
+    public IntroducirMarcaPorClienteModelo(Integer clienteId, Integer marcaId) {
+        this.clienteId = clienteId;
         this.marcaId = marcaId;
     }
 
-    public Integer getClienteID() {
-        return clienteID;
+    public Integer getClienteId() {
+        return clienteId;
     }
 
-    public void setClienteID(Integer clienteID) {
-        this.clienteID = clienteID;
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
     }
 
     public Integer getMarcaId() {

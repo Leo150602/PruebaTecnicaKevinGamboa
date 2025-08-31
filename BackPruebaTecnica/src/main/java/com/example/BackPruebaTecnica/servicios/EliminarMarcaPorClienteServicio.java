@@ -15,8 +15,8 @@ public class EliminarMarcaPorClienteServicio {
 
     @Transactional
     public void eliminarMarcaPorCliente(
-            int clienteId,
-            int marcaId
+            Integer clienteId,
+            Integer marcaId
     ){
         eliminarMarcaPorClienteRepositorio.eliminarMarcaPorCliente(
                 clienteId,

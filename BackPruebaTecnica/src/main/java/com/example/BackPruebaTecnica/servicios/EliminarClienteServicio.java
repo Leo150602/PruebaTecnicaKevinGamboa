@@ -15,7 +15,7 @@ public class EliminarClienteServicio {
 
     @Transactional
     public void eliminarCliente(
-            int id
+            Integer id
     ){
         eliminarClienteRepositorio.eliminarCliente(
                 id

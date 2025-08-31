@@ -1,6 +1,8 @@
 package com.example.BackPruebaTecnica.modelos;
 import jakarta.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
+
 
 @Entity
 @Table(name = "cliente")
@@ -8,33 +10,34 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
     private Integer idCliente;
 
-    @Column(name = "idTipoIdentificacion")
+    @Column(name = "id_tipo_identificacion")
     private Integer idTipoIdentificacion;
 
-    @Column(name = "numeroIdentificacion")
+    @Column(name = "numero_identificacion")
     private Integer numeroIdentificacion;
 
-    @Column(name = "nombresCliente")
+    @Column(name = "nombres_cliente")
     private String nombresCliente;
 
-    @Column(name = "apellidosCliente")
+    @Column(name = "apellidos_cliente")
     private String apellidosCliente;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
 
     @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "idPais")
+    @Column(name = "id_pais")
     private Integer idPais;
 
-    @Column(name = "idDepartamento")
+    @Column(name = "id_departamento")
     private Integer idDepartamento;
 
-    @Column(name = "idCiudad")
+    @Column(name = "id_ciudad")
     private Integer idCiudad;
 
     public Cliente() {
