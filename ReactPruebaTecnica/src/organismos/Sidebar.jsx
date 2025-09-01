@@ -14,8 +14,7 @@ export function Sidebar(){
             <SeccionSidebar nombre={"Registro"} ruta="/" />
 
             <SeccionSidebar nombre={"Clientes"} ruta="/clientes" />
-
-            <SeccionSidebar nombre={"Paises"} ruta="/paises" />         
+     
 
             <Switch></Switch>
 

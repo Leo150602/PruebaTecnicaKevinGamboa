@@ -115,3 +115,48 @@ export async function buscarMarcasPorCliente(clienteId) {
     return datos
     
 }
+
+export async function introducirPais(datosFormulario) {
+    let url="http://localhost:8443/pais/introducir"
+
+    let peticion ={
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:datosFormulario
+    }
+
+    let respuesta = await fetch(url,peticion)
+    return await respuesta.text()
+}
+
+export async function introducirDepartamento(datosFormulario) {
+    let url="http://localhost:8443/departamento/introducir"
+
+    let peticion ={
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:datosFormulario
+    }
+
+    let respuesta = await fetch(url,peticion)
+    return await respuesta.text()
+}
+
+export async function introducirCiudad(datosFormulario) {
+    let url="http://localhost:8443/ciudad/introducir"
+
+    let peticion ={
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:datosFormulario
+    }
+
+    let respuesta = await fetch(url,peticion)
+    return await respuesta.text()
+}

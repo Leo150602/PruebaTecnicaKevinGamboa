@@ -12,58 +12,62 @@ import nafNaf from "../assets/nafNaf.png"
 import rifle from "../assets/rifle.png"
 import { useState } from "react";
 
-export function Home(){
-
-    const {escojidos, agregarListaMarcas } = useListaMarcas()
+export function Home() {
+    const { escojidos, agregarListaMarcas } = useListaMarcas();
     const [idPais, setIdPais] = useState("");
     const [idDepartamento, setIdDepartamento] = useState("");
+    const [idCiudad, setIdCiudad] = useState("");
     const [error, seterror] = useState([]);
 
+    const cambiarPais = (e) => {
+        setIdPais(e.target.value);
+        setIdDepartamento("");
+        setIdCiudad("");
+    }
 
-    return(
+    const cambiarDepartamento = (e) => {
+        setIdDepartamento(e.target.value);
+        setIdCiudad("");
+    }
+
+    const cambiarCiudad = (e) => {
+        setIdCiudad(e.target.value);
+    }
+
+    return (
         <PaginaInicio>
-
             <h1>Bienvenido a GCO</h1>
-           
             <p>Conjunto de empresas del sector textil con representación, y/o producción y comercialización para Colombia de las marcas Chevignon, Naf Naf, Americanino, Esprit, Rifle, American Eagle, MNG.</p>
 
             <h2>¿en cuales empresas te gustaria registrarte?</h2>
             <div className="empresas">
-
                 <Marcas imagen={americanino} nombre="Americanino" marca="1" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 <Marcas imagen={americanEagle} nombre="American Eagle" marca="2" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 <Marcas imagen={chevignon} nombre="Chevignon" marca="3" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 <Marcas imagen={esprit} nombre="Esprit" marca="4" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 <Marcas imagen={nafNaf} nombre="Naf Naf" marca="5" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
                 <Marcas imagen={rifle} nombre="Rifle" marca="6" escojidos={escojidos} agregarListaMarcas={agregarListaMarcas} />
-                
-
             </div>
+
             <div className="formularioDiv" style={{ display: escojidos.length === 0 ? "none" : "block" }}>
                 <h1>Datos De Inscripcion</h1>
-                <form >
-                        
-                    <div className="formulario" >
-
+                <form>
+                    <div className="formulario">
                         <ParametroInput nombreTitulo="Nombres Cliente" tipo="text" nombre="nombresCliente" mensajeError="el nombre solo puede contener letras" error={error} />
                         <ParametroInput nombreTitulo="Apellidos Cliente" tipo="text" nombre="apellidosCliente" mensajeError="el nombre solo puede contener letras" error={error} />
                         <ParametroSelectTipoIdentificacion nombreTitulo="Tipo Identificación" nombre="tipoIdentificacion" mensajeError="seleccione un tipo de identificacion" error={error} />
                         <ParametroInput nombreTitulo="Número Identificación" tipo="number" nombre="numeroIdentificacion" mensajeError="el numero de identificacion ya esta registrado, escoja otro" error={error} />
                         <ParametroInputDate nombreTitulo="Fecha Nacimiento" nombre="fechaNacimiento" mensajeError="seleccione una fecha de nacimiento" error={error} />
-                        <ParametroInput nombreTitulo="Dirección" tipo="text" nombre="direccion" mensajeError="la direccion no es valida" error={error} />   
-                        <ParametroSelectPaises nombreTitulo="País" nombre="pais" onChange={(e) => setIdPais(e.target.value)} mensajeError="seleccione un pais" error={error} />
-                        <ParametroSelectDepartamentos nombreTitulo="Departamento" nombre="departamento" idPais={idPais} onChange={(e) => setIdDepartamento(e.target.value)} mensajeError="seleccione un departamento" error={error}/>
-                        <ParametroSelectCiudades nombreTitulo="Ciudad" nombre="ciudad" idDepartamento={idDepartamento} mensajeError="seleccione una ciudad" error={error} />
-                        
+                        <ParametroInput nombreTitulo="Dirección" tipo="text" nombre="direccion" mensajeError="la direccion no es valida" error={error} />
+                        <ParametroSelectPaises nombreTitulo="País" nombre="pais" value={idPais} onChange={cambiarPais} mensajeError="seleccione un pais" error={error} />
+                        <ParametroSelectDepartamentos nombreTitulo="Departamento" nombre="departamento" idPais={idPais} value={idDepartamento} onChange={cambiarDepartamento} mensajeError="seleccione un departamento" error={error} />
+                        <ParametroSelectCiudades nombreTitulo="Ciudad" nombre="ciudad" idDepartamento={idDepartamento} value={idCiudad} onChange={cambiarCiudad} mensajeError="seleccione una ciudad" error={error} />
                     </div>
-                    <ValidarFormulario escojidos={escojidos} envioErrores={(errores=>seterror(errores))}/>
+                    <ValidarFormulario escojidos={escojidos} envioErrores={(errores => seterror(errores))} />
                 </form>
             </div>
-            
-
         </PaginaInicio>
-    )
-
+    );
 }
 
 const PaginaInicio = styled.div`

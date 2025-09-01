@@ -1,7 +1,9 @@
 package com.example.BackPruebaTecnica.repositorios;
 
 import com.example.BackPruebaTecnica.modelos.*;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,4 +23,25 @@ public interface UbicacionRepositorio extends JpaRepository<Pais, Integer> {
 
     @Query(value = "CALL mostrar_tipo_identificacion()", nativeQuery = true)
     List<TipoIdentificacionModelo> mostrarTipoIdentificacion();
+
+    @Modifying
+    @Transactional
+    @Query(value = "CALL introducir_pais(:entradaPais)", nativeQuery = true)
+    void introducirPais(@Param("entradaPais") String entradaPais);
+
+    @Modifying
+    @Transactional
+    @Query(value = "CALL introducir_departamento(:entradaIdPais, :entradaDepartamento)", nativeQuery = true)
+    void introducirDepartamento(
+            @Param("entradaIdPais") Integer entradaIdPais,
+            @Param("entradaDepartamento") String entradaDepartamento
+    );
+
+    @Modifying
+    @Transactional
+    @Query(value = "CALL introducir_ciudad(:entradaIdDepartamento, :entradaCiudad)", nativeQuery = true)
+    void introducirCiudad(
+            @Param("entradaIdDepartamento") Integer entradaIdDepartamento,
+            @Param("entradaCiudad") String entradaCiudad
+    );
 }

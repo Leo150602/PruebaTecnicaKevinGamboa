@@ -105,6 +105,40 @@ end$$
 DELIMITER ;
 
 DELIMITER $$
+create procedure introducir_pais(
+    in entrada_pais char(30)
+)
+begin
+    insert into pais (pais)
+    values(entrada_pais);
+end$$
+DELIMITER ;
+
+DELIMITER $$
+create procedure introducir_departamento(
+	in entrada_id_pais int,
+    in entrada_departamento char(30)
+    
+)
+begin
+    insert into departamento (id_pais, departamento)
+    values(entrada_id_pais, entrada_departamento);
+end$$
+DELIMITER ;
+
+DELIMITER $$
+create procedure introducir_ciudad(
+	in entrada_id_departamento int,
+    in entrada_ciudad char(30)
+    
+)
+begin
+    insert into departamento (id_departamento, ciudad)
+    values(entrada_id_departamento, entrada_ciudad);
+end$$
+DELIMITER ;
+
+DELIMITER $$
 create procedure mostrar_todos_clientes()
 begin
     select 
@@ -367,3 +401,24 @@ INSERT INTO marca (marca) VALUES
 ('Naf Naf'),
 ('Rifle');
 
+
+-- Insertar clientes
+CALL introducir_cliente(1, 12345678, 'Ejemplo1', 'Apellido1', '1990-01-01', 'Calle 1 #1-1', 1, 1, 1);
+CALL introducir_cliente(2, 87654321, 'Ejemplo2', 'Apellido2', '1992-02-02', 'Calle 2 #2-2', 2, 7, 19);
+CALL introducir_cliente(3, 11223344, 'Ejemplo3', 'Apellido3', '1994-03-03', 'Calle 3 #3-3', 1, 2, 4);
+
+-- Asociar marcas a los clientes
+-- Ejemplo1
+CALL introducir_marca_por_cliente(1, 1);
+CALL introducir_marca_por_cliente(1, 2);
+CALL introducir_marca_por_cliente(1, 3);
+
+-- Ejemplo2
+CALL introducir_marca_por_cliente(2, 4);
+CALL introducir_marca_por_cliente(2, 5);
+CALL introducir_marca_por_cliente(2, 6);
+
+-- Ejemplo3
+CALL introducir_marca_por_cliente(3, 1);
+CALL introducir_marca_por_cliente(3, 3);
+CALL introducir_marca_por_cliente(3, 5);

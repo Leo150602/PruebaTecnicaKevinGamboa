@@ -41,7 +41,7 @@ export function ParametroSelectDepartamentos(props){
 
         <ParametroSelectDiv>
             <TituloFormulario nombreTitulo={props.nombreTitulo}  />
-            <SelectFormularioDepartamentos nombre={props.nombre} id={props.nombre} placeHolder={props.placeHolder} idPais={props.idPais} onChange={props.onChange} />
+            <SelectFormularioDepartamentos nombre={props.nombre} value={props.value}  id={props.nombre} placeHolder={props.placeHolder} idPais={props.idPais} onChange={props.onChange} />
             <DivError mensajeError={props.mensajeError} error={props.error} nombre={props.nombre}/>
 
         </ParametroSelectDiv>
@@ -56,7 +56,7 @@ export function ParametroSelectCiudades(props){
 
         <ParametroSelectDiv>
             <TituloFormulario nombreTitulo={props.nombreTitulo}  />
-            <SelectFormularioCiudades nombre={props.nombre} id={props.nombre} placeHolder={props.placeHolder} idDepartamento={props.idDepartamento} />
+            <SelectFormularioCiudades nombre={props.nombre} value={props.value}  id={props.nombre} placeHolder={props.placeHolder} idDepartamento={props.idDepartamento} />
             <DivError mensajeError={props.mensajeError} error={props.error} nombre={props.nombre}/>
 
         </ParametroSelectDiv>
